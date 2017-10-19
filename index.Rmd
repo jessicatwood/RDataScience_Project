@@ -1,13 +1,11 @@
 ---
-title: "I have the best titles"
+title: Distribution of Bison Bison
 author: Jessica Wood
-subtitle: Subtitle here if desired
+subtitle: How Environmental Factors Affect Range
 ---
 
 # Introduction
-My really awesome and complete introduction will go here.  
-
-> I know words.  I have the best words.  ~ Donald Trump
+Species ranges are restricted based on the ecological features they are suited to inhabit. This constraint can cause a species’ range exist as highly fragmented populations or be relatively ubiquitous over a large area based on the location of these features. Bison populations are subject to this range restriction, preferring habitats with a large amount of open area, drier climates and mid-range elevations. Due to these assumptions it is expected that bison would be found in areas that meet all or most of these standards. In order to examine how habitats are able to affect bison populations and their locations, species observations can be used to determine which habitats are most suitable for the species.
 
 # Materials and methods
 
