@@ -303,6 +303,7 @@ div.tocify {
 </div>
 
 
+<p><img src="https://commons.wikimedia.org/wiki/File:American_bison_k5680-1.jpg#/media/File:American_bison_k5680-1.jpg" alt="alt text" width="200"> <small><small><small>Licensed under CC BY-SA 3.0 via <a href="https://commons.wikimedia.org/wiki/File:American_bison_k5680-1.jpg#/media/File:American_bison_k5680-1.jpg">Wikimedia Commons</a></small></small></small></p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Species ranges are restricted based on the ecological features they are suited to inhabit. This constraint can cause a species’ range to exist as highly fragmented populations or be relatively ubiquitous over a large area based on the location of these features. Bison populations are subject to this range restriction, preferring habitats with a large amount of open area, drier climates and mid-range elevations where grasses grow well <span class="citation">[@Lott2017]</span>. Due to these assumptions it is expected that bison would be found in areas that meet all or most of these standards. In order to examine how habitats are able to affect bison populations and their locations, species observations can be used to determine which habitat types are most suitable for bison and where they are located<span class="citation">[@Palma99]</span>. From this analysis a map of locations that are suitable for bison will be created based on a selected model. From this map it is expected that highly suitable points will be found within Yellowstone National Park, as it is the only location within the United States with a wild bison herd<span class="citation">[@IUCN]</span>. Additionally, it is expected that locations with mid- to high-elevations, mid-range climates and low forest cover will be most suitable for the species.</p>
@@ -341,7 +342,7 @@ occs$longitude &lt;- as.numeric(occs$longitude)</code></pre>
 <pre class="r"><code>ggplot(occs,aes(x=longitude,y=latitude))+ geom_polygon(aes(x=long,y=lat,group=group),data=us)+ geom_point(col=&quot;red&quot;)+coord_equal()</code></pre>
 <pre><code>## Regions defined for each Polygons</code></pre>
 <div class="figure">
-<img src="index_files/figure-html/unnamed-chunk-8-1.png" alt="Map of Observation Data Within the United Sates" width="576" />
+<img src="index_files/figure-html/unnamed-chunk-8-1.png" alt="Map of Observation Data Within the United Sates" width="768" />
 <p class="caption">
 Map of Observation Data Within the United Sates
 </p>
@@ -378,7 +379,8 @@ Map illustrating the known occurrence locations
 <h1>Results</h1>
 <p>Show tables, plots, etc. and describe them.</p>
 <p>Figure 1:</p>
-<pre class="r"><code>ggplot(occs,aes(x=longitude,y=latitude))+ geom_polygon(aes(x=long,y=lat,group=group),data=us)+ geom_point(col=&quot;red&quot;)+coord_equal()</code></pre>
+<pre class="r"><code>us=getData(&#39;GADM&#39;,country=&#39;USA&#39;,level=1)
+ggplot(occs,aes(x=longitude,y=latitude))+ geom_polygon(aes(x=long,y=lat,group=group),data=us)+ geom_point(col=&quot;red&quot;)+coord_equal()</code></pre>
 <pre><code>## Regions defined for each Polygons</code></pre>
 <div class="figure">
 <img src="index_files/figure-html/unnamed-chunk-12-1.png" alt="Map of Observation Data Within the United Sates" width="576" />
