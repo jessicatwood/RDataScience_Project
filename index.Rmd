@@ -12,12 +12,7 @@ Species ranges are restricted based on the ecological features they are suited t
 
 1. Install and load required packages:
 ```{r,message=F, warning=F}
-install.packages('wallace')
-install.packages('spocc')
-install.packages('spThin')
-install.packages('dismo')
-install.packages('rgeos')
-install.packages('ENMeval')
+
 library(spocc)
 library(spThin)
 library(dismo)
