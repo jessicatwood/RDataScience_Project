@@ -54,7 +54,7 @@ Collected records can all be labeled with unique names.
 occs$origID <- row.names(occs)
 ```
 
-The data then needed to be filtered to only include observations located within the Continental United States.This was done by selecting observations that fell witin the shapefile of the United States given within the Wallace program. Although 2889 observations were created, this number was reduce to reduce error and increase speed. After this sorting was done 700 total occurance points were included in the analysis.
+The data then needed to be filtered to only include observations located within the Continental United States.This was done by selecting observations that fell witin the shapefile of the United States given within the Wallace program. Although 2889 observations were created, this number was reduced to reduce error and increase speed. After this sorting was done 700 total occurance points were included in the analysis.
 
 
 ```{r,message=F, warning=F}
@@ -74,22 +74,12 @@ ggplot(occs,aes(x=longitude,y=latitude))+ geom_polygon(aes(x=long,y=lat,group=gr
 
 
 
-Load any required packages in a code chunk (you may need to install some packages):
-
-```{r, message=F, warning=F}
-library(dplyr)
-library(ggplot2)
-library(maps)
-library(spocc)
-knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling
-```
-
 
 
 
 # Results
 
-Show tables, plots, etc. and describe them.
+Show tables, plots, etc. and describes them.
 
 Figure 1:
 
@@ -98,7 +88,7 @@ us=getData('GADM',country='USA',level=1)
 ggplot(occs,aes(x=longitude,y=latitude))+ geom_polygon(aes(x=long,y=lat,group=group),data=us)+ geom_point(col="red")+coord_equal()
 ```
 
-This map shows the raw occurence data that was found to be within the United States limits.This map only includes 700 data points from a total of near 3000 possible in order to excellerate processing time.It can be seen that while bison observations are widespread across the United States, there is a preference of the species towards the western portion of the country.
+This map shows the raw occurence data that was found to be within the United States limits.This map only includes 700 data points from a total of almost 3000 possible in order to accelerate processing time.It can be seen that while bison observations are widespread across the United States, there is a preference of the species towards the western portion of the country.
 
 # Conclusions
 
