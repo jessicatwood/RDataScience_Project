@@ -27,6 +27,7 @@ library(knitr)
 library(wallace)
 library(leaflet)
 library(widgetframe)
+library(htmlwidgets)
 library(DT)
 ```
 
