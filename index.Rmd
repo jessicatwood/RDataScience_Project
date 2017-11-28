@@ -1,4 +1,4 @@
----
+=---
 title: Species Distribution of Bison bison in the United States
 author: Jessica Wood
 subtitle: How Environmental Factors Affect Range
@@ -27,8 +27,8 @@ library(knitr)
 library(wallace)
 library(leaflet)
 library(widgetframe)
-library(htmlwidgets)
 library(DT)
+opts_chunk$set(cache=T)
 ```
 
 The wallace package also requires integration that is not included with the package. The funcition system.file will find them and source will load it:
@@ -78,9 +78,9 @@ datatable(occs, options = list(pageLength = 20))
 Plot the data:
 
 
-```{r, fig.width=5, fig.height=5, fig.cap="Map of Observation Data Within the United Sates"}
-leaflet(occs) %>% addTiles() %>% addMarkers(
-  clusterOptions = markerClusterOptions()
+```{r, fig.width=5, fig.height=5, fig.cap="Map of Observation Data Within the United Sates", results="asis"}
+leaflet(occs) %>% addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>% addMarkers(
+  clusterOptions = markerClusterOptions(freezeAtZoom=4)
 ) %>% frameWidget(height =500)
 ```
 
@@ -213,9 +213,9 @@ datatable(occs, options = list(pageLength = 20))
 
 Figure 1:
 
-```{r,echo=F,warning=F, fig.width=6, fig.height=3, fig.cap="Map of Observation Data Within the United Sates"}
-leaflet(occs) %>% addTiles() %>% addMarkers(
-  clusterOptions = markerClusterOptions()
+```{r, fig.width=5, fig.height=5, fig.cap="Map of Observation Data Within the United Sates", results="asis"}
+leaflet(occs) %>% addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>% addMarkers(
+  clusterOptions = markerClusterOptions(freezeAtZoom=4)
 ) %>% frameWidget(height =500)
 ```
 
