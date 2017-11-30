@@ -12,7 +12,7 @@
 <meta name="author" content="Jessica Wood" />
 
 
-<title>Habitat Suitability for Bison Bison in the United States</title>
+<title>Habitat Suitability for Bison Bison in The United States</title>
 
 <script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -304,7 +304,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Habitat Suitability for Bison Bison in the United States</h1>
+<h1 class="title toc-ignore">Habitat Suitability for Bison Bison in The United States</h1>
 <h3 class="subtitle"><em>How Environmental Factors Affect Range</em></h3>
 <h4 class="author"><em>Jessica Wood</em></h4>
 
@@ -351,7 +351,7 @@ occs &lt;- remDups(results.data)</code></pre>
 occs$longitude &lt;- as.numeric(occs$longitude)</code></pre>
 <p>Collected records can all be labeled with unique names.</p>
 <pre class="r"><code>occs$origID &lt;- row.names(occs)</code></pre>
-<p>The data then needed to be filtered to only include observations located within the Continental United States In total 2957 observations were selected. These observations were then edited to only include 625 observations in order to minimize processing time.</p>
+<p>The data then needed to be filtered to only include observations located within the continental United States In total 2957 observations were selected. These observations were then edited to only include 625 observations in order to minimize processing time.</p>
 <pre class="r"><code>a=filter(occs,longitude&lt;0)
 occs=filter(a,latitude&lt;50)</code></pre>
 <pre class="r"><code>datatable(occs, options = list(pageLength = 10))</code></pre>
@@ -363,10 +363,10 @@ occs=filter(a,latitude&lt;50)</code></pre>
 ) %&gt;% frameWidget(height =500)</code></pre>
 <pre><code>## Assuming &#39;longitude&#39; and &#39;latitude&#39; are longitude and latitude, respectively</code></pre>
 <div class="figure">
-<div id="htmlwidget-1ca5b4525fc46c495a40" style="width:100%;height:500px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1ca5b4525fc46c495a40">{"x":{"url":"index_files/figure-html//widgets/widget_unnamed-chunk-9.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3c49021fd1ce65bb0dc2" style="width:100%;height:500px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3c49021fd1ce65bb0dc2">{"x":{"url":"index_files/figure-html//widgets/widget_unnamed-chunk-9.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-Map of Observation Data Within the United Sates
+Map of Observation Data Within The United Sates
 </p>
 </div>
 <ol start="3" style="list-style-type: decimal">
@@ -492,9 +492,9 @@ predsMsk &lt;- raster::mask(predsProj, projPoly)
 newExtProj &lt;- dismo::predict(modSel, predsMsk)
 plot(newExtProj)</code></pre>
 <div class="figure">
-<img src="index_files/figure-html/unnamed-chunk-20-1.png" alt="Habitat Distribution of Bison bison Within the United Sates" width="576" />
+<img src="index_files/figure-html/unnamed-chunk-20-1.png" alt="Habitat Distribution of Bison bison Within The United Sates" width="576" />
 <p class="caption">
-Habitat Distribution of Bison bison Within the United Sates
+Habitat Distribution of Bison bison Within The United Sates
 </p>
 </div>
 <ol start="6" style="list-style-type: decimal">
@@ -533,10 +533,10 @@ Bison Observations in the United States
 ) %&gt;% frameWidget(height =500)</code></pre>
 <pre><code>## Assuming &#39;longitude&#39; and &#39;latitude&#39; are longitude and latitude, respectively</code></pre>
 <div class="figure">
-<div id="htmlwidget-01730c4d1d83e3501af8" style="width:100%;height:500px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-01730c4d1d83e3501af8">{"x":{"url":"index_files/figure-html//widgets/widget_unnamed-chunk-23.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f4ae0954ff0c436c1f87" style="width:100%;height:500px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f4ae0954ff0c436c1f87">{"x":{"url":"index_files/figure-html//widgets/widget_unnamed-chunk-23.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-Map of Observation Data Within the United Sates
+Map of Observation Data Within The United Sates
 </p>
 </div>
 <p>This map shows the raw occurrence data that was found to be within the United States limits.This map only includes 625 data points from a total of almost 3000 possible in order to accelerate processing time.It can be seen that while bison observations are widespread across the United States, there is a preference of the species towards the western portion of the country.</p>
