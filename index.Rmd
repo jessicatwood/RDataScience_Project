@@ -1,4 +1,4 @@
-=---
+---
 title: Habitat Suitability for Bison Bison in the United States
 author: Jessica Wood
 subtitle: How Environmental Factors Affect Range
@@ -72,7 +72,7 @@ occs=filter(a,latitude<50)
 ```
 
 ```{r}
-datatable(occs, options = list(pageLength = 20))
+datatable(occs, options = list(pageLength = 10))
 ```
 
 Plot the data:
@@ -80,7 +80,7 @@ Plot the data:
 
 ```{r, fig.width=5, fig.height=5, fig.cap="Map of Observation Data Within the United Sates", results="asis"}
 leaflet(occs) %>% addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>% addMarkers(
-  clusterOptions = markerClusterOptions(freezeAtZoom=4)
+  clusterOptions = markerClusterOptions()
 ) %>% frameWidget(height =500)
 ```
 
@@ -208,14 +208,14 @@ plot(futureProj)
 Table 1:
 
 ```{r,echo=F,fig.cap="Bison Observations in the United States"}
-datatable(occs, options = list(pageLength = 20))
+datatable(occs, options = list(pageLength = 10))
 ```
 
 Figure 1:
 
 ```{r, fig.width=5, fig.height=5, fig.cap="Map of Observation Data Within the United Sates", results="asis"}
 leaflet(occs) %>% addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>% addMarkers(
-  clusterOptions = markerClusterOptions(freezeAtZoom=4)
+  clusterOptions = markerClusterOptions()
 ) %>% frameWidget(height =500)
 ```
 
