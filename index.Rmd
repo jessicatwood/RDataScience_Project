@@ -214,7 +214,7 @@ datatable(occs, options = list(pageLength = 10))
 Figure 1:
 
 ```{r, fig.width=5, fig.height=5, fig.cap="Map of Observation Data Within The United Sates", results="asis"}
-leaflet(occs) %>% addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>% addMarkers(
+leaflet(occs) %>% addProviderTiles(providers$OpenStreetMap) %>% addMarkers(
   clusterOptions = markerClusterOptions()
 ) %>% frameWidget(height =500)
 ```
