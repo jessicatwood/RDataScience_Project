@@ -1,5 +1,5 @@
 ---
-title: Habitat Suitability for Bison Bison in The United States
+title: Habitat Suitability for _Bison bison_ in The United States
 author: Jessica Wood
 subtitle: How Environmental Factors Affect Range
 ---
@@ -13,7 +13,7 @@ Species ranges are restricted based on the ecological features they are suited t
 # Materials and methods
 
 
-1. Install and load required packages:
+## Install and load required packages:
 ```{r,message=F, warning=F}
 
 library(spocc)
@@ -31,15 +31,15 @@ library(DT)
 opts_chunk$set(cache=T)
 ```
 
-The wallace package also requires integration that is not included with the package. The funcition system.file will find them and source will load it:
+The wallace package also requires functions that are not included with the package. The function system.file will find them and source will load it:
 
 ```{r,message=F, warning=F}
 source(system.file('shiny/funcs', 'functions.R', package='wallace'))
 ```
 
-2. Obtating Occurence Data
+## Obtating Occurence Data
 
-Occurance data will be downloaded from the gbif database (GBIF,2017). This data was limited to 3000 records and therefore could not contain all occurence data points.
+Occurance data will be downloaded from the gbif database (GBIF,2017). The data retrieval tool within the wallace package limited this download to 3000 records and therefore this dataset does not contain all occurrence data points.
 
 ```{r,message=F, warning=F}
 results <- spocc::occ(query = "Bison bison", from = "gbif", limit = 3000, has_coords = TRUE)
@@ -71,20 +71,10 @@ a=filter(occs,longitude<0)
 occs=filter(a,latitude<50)
 ```
 
-```{r}
-datatable(occs, options = list(pageLength = 10))
-```
-
-Plot the data:
+A data table containing a summary of these points as well as a map created to show their location can be found in Table 1 and Figure 1.
 
 
-```{r, fig.width=5, fig.height=5, fig.cap="Map of Observation Data Within The United Sates", results="asis"}
-leaflet(occs) %>% addProviderTiles(providers$OpenStreetMap.BlackAndWhite) %>% addMarkers(
-  clusterOptions = markerClusterOptions()
-) %>% frameWidget(height =500)
-```
-
-3. Environmental Data
+## Environmental Data
 
 Data was collected from the WorldClim (Fick,2017) database using a resolution of 2.5 arc minutes.
 ```{r, message=F,warning=F}
@@ -120,7 +110,7 @@ bg.coords <- dismo::randomPoints(predsBackgMsk, 10000)  # generate 10,000 backgr
 bg.coords <- as.data.frame(bg.coords)  # get the matrix output into a data.frame
 ```
 
-4. Partition Occurance Data
+## Partition Occurance Data
 
 
 The model being constructed needs to be validated through testing. This can be done by partitioning the observation data-points into multiple sets. Here, the data was broken up into four sets of points which will then be placed in the model three at a time to check for accuracy.
@@ -133,9 +123,9 @@ group.data <- ENMeval::get.block(occ=occs.locs, bg.coords=bg.coords)
 modParams <- list(occ.pts=occs.locs, bg.pts=bg.coords, occ.grp=group.data[[1]], bg.grp=group.data[[2]])
 ```
 
-5. Choose and Evaluate Niche Model
+## Choose and Evaluate Niche Model
 
-The BIOCLIM model was selected due to its extensive use in distribution modeling in regard to terrestrial species.The goal of this model is to find a rule that applies to all or most of the areas of a similar climate that contain species observations.
+The BIOCLIM model was used to create a distribution model for this species.The goal of this model is to find a rule that applies to all or most of the areas of a similar climate that contain species observations.
 
 ```{r}
 e <- BioClim_eval(modParams$occ.pts, modParams$bg.pts, modParams$occ.grp, modParams$bg.grp, predsBackgMsk)
@@ -154,21 +144,10 @@ if (length(occVals) < 10) {  # if less than 10 occ values, find 90% of total and
 p10s <- rev(sort(occVals))[n90]  # apply 10% training presence threshold
 ```
 
-The results of this modeling can be veiwed:
-
-```{r,fig.cap="Results of Modeling Analysis of Bin 1 for BIOCLIM1 and 2"}
-plot(evalMods[[1]], a = 1, b = 2, p = 0.9)
-```
 
 
-```{r,fig.width=6,fig.height=3,fig.cap="Results Table of Modeling Analysis"}
-kable(evalTbl)
-```
-
-
-Area under the curve (AUC) is the ability of a model to discriminate between presence and absence data, therefore, it should be high in a suitable model. The omission rate (OR) of a model indicates how often observations fall outside the prediction area. Both minimum traning and 10 percent training both apply to the omission rate, with 10 percent being a more strict analysis (Jamie,2017).
  
-5. Project Model
+## Project Model
 
 ```{r}
 projCoords <- data.frame(x = c(-123.7456, -94.3022, -80.3276, -70.3081, -67.3198, -78.7456, -81.1187, -88.9409, -98.0815, -104.6733, -118.5601, -124.7124), y = c(49.153, 49.2678, 42.033, 47.2792, 45.4601, 33.7974, 26.116, 30.4487, 26.116, 29.5352, 32.6949, 42.2285))
@@ -178,9 +157,9 @@ projPoly <- sp::SpatialPolygons(list(sp::Polygons(list(sp::Polygon(projCoords)),
 modSel <- evalMods[[1]]
 ```
 
-6. Map Projected Model
+## Map Projected Model
 
-```{r,fig.width=6,fig.height=3,fig.cap="Habitat Distribution of Bison bison Within The United Sates"}
+```{r,fig.width=6,fig.height=3,fig.cap="Habitat Distribution of _Bison bison_ Within The United Sates"}
 predsProj <- raster::crop(preds, projPoly)
 predsMsk <- raster::mask(predsProj, projPoly)
 
@@ -188,7 +167,7 @@ newExtProj <- dismo::predict(modSel, predsMsk)
 plot(newExtProj)
 ```
 
-6. Extend to New Time
+## Extend to New Time
 
 This model can then be extended to a new time frame, such as 2070. This can be done using General Circulation Models and Concentration Pathways.
 
@@ -205,36 +184,38 @@ plot(futureProj)
 ```
 # Results
 
-Table 1:
+## Table 1: Bison Observations
 
-```{r,echo=F,fig.cap="Bison Observations in the United States"}
-datatable(occs, options = list(pageLength = 10))
+```{r,fig.cap="Bison Observations in the United States"}
+datatable(occs, options = list(pageLength = 5))
 ```
 
-Figure 1:
+## Figure 1: Observation Map
 
 ```{r, fig.width=5, fig.height=5, fig.cap="Map of Observation Data Within The United Sates", results="asis"}
 leaflet(occs) %>% addProviderTiles(providers$OpenStreetMap) %>% addMarkers(
-  clusterOptions = markerClusterOptions()
+  clusterOptions = markerClusterOptions(maxClusterRadius=20)
 ) %>% frameWidget(height =500)
 ```
 
 This map shows the raw occurrence data that was found to be within the United States limits.This map only includes 625 data points from a total of almost 3000 possible in order to accelerate processing time.It can be seen that while bison observations are widespread across the United States, there is a preference of the species towards the western portion of the country.
 
-Figure 2:
-```{r,echo=F, fig.width=6,fig.height=3,fig.cap="Results of Modeling Analysis for Bin 1"}
+## Figure 2: Modeling Results
+```{r,echo=F, fig.width=6,fig.height=3,fig.cap="Results of Modeling Analysis for Bio 1 and 2"}
 plot(evalMods[[1]], a = 1, b = 2, p = 0.9)
 ```
 
-Table 2:
+Bioclim compares the values of environmental factors at locations with known occurrence data in order to find areas with similar climates. In this example Bio1 is the annual mean temperature of the area, while Bio2 is the locations mean diurnal range (average of daily maximum minus daily minimum temperature per month).  Green points show the occurrence locations and red points are absence data. This model then creates an envelope where occurrence points are found in each combination of climate data in order to make assumptions regarding the preferred habitat of the species.
+
+## Table 2: Model Selection
 ```{r,echo=F,fig.width=6,fig.height=3,fig.cap="Results Table of Modeling Analysis"}
-kable(evalTbl)
+kable(evalTbl, digits = 3)
 ```
 
-Table 1 and Figure 2 are both results of the modeling analysis. Due to the resulting output, the best combination of AUC and OR is Bin 1, with a mid -range AUC but a lower OR for both minimum and 10 percent training and will be used in the model. 
+Table 1 and Figure 2 are both results of the modeling analysis. Area under the curve (AUC) is the ability of a model to discriminate between presence and absence data, therefore, it should be high in a suitable model. The omission rate (OR) of a model indicates how often observations fall outside the prediction area. Both minimum traning and 10 percent training both apply to the omission rate, with 10 percent being a more strict analysis (Jamie,2017).Due to the resulting output, the best combination of AUC and OR is Bin 1, with a mid -range AUC but a lower OR for both minimum and 10 percent training and will be used in the model. 
 
-Figure 3:
-```{r,echo=F,fig.width=9,fig.height=6,fig.cap="Habitat Distribution of Bison bison Within The United Sates"}
+## Figure 3: Current Habitat
+```{r,echo=F,fig.width=9,fig.height=6,fig.cap="Habitat Distribution of _Bison bison_ Within The United Sates"}
 predsProj <- raster::crop(preds, projPoly)
 predsMsk <- raster::mask(predsProj, projPoly)
 
@@ -242,9 +223,9 @@ newExtProj <- dismo::predict(modSel, predsMsk)
 plot(newExtProj)
 ```
 
-Figure 3 are the results of habitat modeling for Bison bison in the United States. A high value, labeled in green, would apply to any area that is suitable bison habitat. A low value or a value of 0 indicates a location where it would be difficult for bison to exist in currently. It can be noted that higher values can be seen in the North Western United States. This approximation makes sense due to the knowledge that currently bison herds live in this area near Yellowstone National Park.
+Figure 3 are the results of habitat modeling for _Bison bison_ in the United States. A high value, labeled in green, would apply to any area that is suitable bison habitat. A low value or a value of 0 indicates a location where it would be difficult for bison to exist in currently. It can be noted that higher values can be seen in the North Western United States. This approximation makes sense due to the knowledge that currently bison herds live in this area near Yellowstone National Park.
 
-Figure 4:
+## Figure 4: 2070 Habitat
 ```{r,echo=F,fig.width=9,fig.height=6,fig.cap="Map of Bison Habitat in 2070"}
 predsFuture <- raster::getData("CMIP5", var = "bio", res = 2.5, rcp = 85, model = "HG", year = 70)
 
@@ -261,7 +242,7 @@ Figure 4 maps the distribution of bison habitat that could occur in 2070 if curr
 
 # Conclusions
 
-625 bison observations within the United States were analyzed in order to determine where suitable habitat for the species is located. After selecting an appropriate model, the resulting map showed that a majority of the highly suitable habitat within the country can be found in the Northwest. While there is a very limited number of highly suitable locations, areas of lower suitability are widespread across the US. This data was then projected into the future using climate models and carbon concentration pathways. This resulted in very few highly suitable areas that continue to move northwest, as well as the shrinking of area of lower suitability. This analysis could be redone using different combinations of climate and carbon projections in order to determine the broader implications of climate change on the species bison Bison, as well as aid in the preservation of the species that is currently environmentally confined.
+625 bison observations within the United States were analyzed in order to determine where suitable habitat for the species is located. After selecting an appropriate model, the resulting map showed that a majority of the highly suitable habitat within the country can be found in the Northwest. While there is a very limited number of highly suitable locations, areas of lower suitability are widespread across the US. This data was then projected into the future using climate models and carbon concentration pathways. This resulted in very few highly suitable areas that continue to move northwest, as well as the shrinking of area of lower suitability. This analysis could be redone using different combinations of climate and carbon projections in order to determine the broader implications of climate change on the species _Bison bison_, as well as aid in the preservation of the species that is currently environmentally confined.
 
 # References
 Fick, S.E. and R.J. Hijmans, 2017. Worldclim 2: New 1-km spatial resolution climate surfaces for global land areas. International Journal of Climatology.
